@@ -57,9 +57,11 @@ h1 {
 #toolbar input {
 	width: 100%;
 	border: none;
+	border-radius: 4px;
 }
 
-#toolbar button {
+#toolbar button,
+#toolbar .tool {
 	width: 100%;
 	background-color: rgb(0, 60, 134);
 	border: none;
@@ -70,6 +72,27 @@ h1 {
 	transition: 100ms all;
 }
 
-#toolbar button:hover {
+#toolbar *:hover:not(label, input) {
 	background-color: rgb(0, 58, 112);
+}
+
+#stroke {
+	min-height: 2rem;
+}
+
+.tool {
+	cursor: pointer;
+	width: 70%;
+	height: 70%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.active {
+	background: rgb(0, 140, 255);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-weight: 600;
 }

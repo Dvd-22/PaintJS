@@ -1,6 +1,6 @@
-const canvas = document.getElementById("drawing-board");
+const canvas = document.getElementById("layer-1");
 const toolbar = document.getElementById("toolbar");
-const save = document.getElementById("save");
+const stroke = document.getElementById("stroke");
 const ctx = canvas.getContext("2d");
 
 const canvasOffsetX = canvas.offsetLeft;
@@ -18,6 +18,21 @@ let startY;
 toolbar.addEventListener("click", (e) => {
 	if (e.target.id === "clear") {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
+	if (e.target.id === "save") {
+		const link = document.createElement("a");
+		link.download = `${title}.jpg`;
+		link.href = canvas.toDataURL();
+		link.click();
+	}
+
+	if (e.target.id === "eraser") {
+		ctx.strokeStyle = "white";
+		console.log(e.target);
+	}
+	if (e.target.id === "pencil") {
+		ctx.strokeStyle = stroke.value;
+		console.log("pencil");
 	}
 });
 
@@ -55,13 +70,6 @@ canvas.addEventListener("mouseup", (e) => {
 	isPainting = false;
 	ctx.stroke();
 	ctx.beginPath();
-});
-
-save.addEventListener("click", () => {
-	const link = document.createElement("a");
-	link.download = `${title}.jpg`;
-	link.href = canvas.toDataURL();
-	link.click();
 });
 
 canvas.addEventListener("mousemove", draw);

@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PaintJS by David A</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -14,15 +15,24 @@
             <h1>PaintJS</h1>
             <label for="title">Title</label>
             <input type="text" name="title" id="title" value="untitled">
-            <label for="stroke">Stroke</label>
+            <label for="stroke" class="active">Color</label>
             <input id="stroke" name="stroke" type="color">
             <label for="lineWidth">Line Width</label>
-            <input type="number" name="lineWidth" id="lineWidth" value="5">
+            <input type="number" name="lineWidth" id="lineWidth" value="5" min="1">
             <button id="clear" type="button">Clear</button>
             <button id="save" type="button">Save</button>
+            <div class="tool" id="pencil">
+                <i class='bx bx-pencil'></i>
+            </div>
+            <div class="tool" id="eraser">
+                <i class='bx bx-eraser'></i>
+            </div>
+            <div class="tool" id="fill">
+                <i class='bx bx-color-fill'></i>
+            </div>
         </div>
         <div class="drawing-board">
-            <canvas id="drawing-board"></canvas>
+            <canvas id="layer-1"></canvas>
         </div>
     </section>
     <script src="/script.js"></script>
