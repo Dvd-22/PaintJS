@@ -2,6 +2,8 @@ const canvas = document.getElementById("layer-1");
 const toolbar = document.getElementById("toolbar");
 const stroke = document.getElementById("stroke");
 const size = document.getElementById("linewidth");
+const eraser = document.getElementById("eraser");
+const pencil = document.getElementById("pencil");
 const ctx = canvas.getContext("2d");
 
 const canvasOffsetX = canvas.offsetLeft;
@@ -38,9 +40,13 @@ toolbar.addEventListener("click", (e) => {
 	}
 	if (e.target.id === "eraser") {
 		ctx.strokeStyle = "white";
+		pencil.classList.remove("active");
+		eraser.classList.add("active");
 	}
 	if (e.target.id === "pencil") {
 		ctx.strokeStyle = stroke.value;
+		eraser.classList.remove("active");
+		pencil.classList.add("active");
 	}
 });
 
@@ -50,7 +56,6 @@ toolbar.addEventListener("change", (e) => {
 	}
 	if (e.target.id === "linewidth" || e.target.id === "linewidthnumber") {
 		lineWidth = e.target.value;
-		console.log(lineWidth);
 	}
 	if (e.target.id === "title") {
 		title = e.target.value;

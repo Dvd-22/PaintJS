@@ -14,8 +14,7 @@ h1 {
 	font-size: 25px;
 }
 
-h1,
-.active {
+h1 {
 	background: rgb(37, 65, 126);
 	background: -webkit-linear-gradient(
 		to right,
@@ -32,6 +31,10 @@ h1,
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.active {
+	background-color: rgb(0, 127, 247) !important;
 }
 
 .container {
@@ -62,6 +65,7 @@ h1,
 	width: 100%;
 	border: none;
 	border-radius: 4px;
+	cursor: pointer;
 }
 
 #toolbar button {
@@ -79,6 +83,7 @@ h1,
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: all 100ms;
 }
 
 .tool i {
