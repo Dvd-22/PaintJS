@@ -1,6 +1,7 @@
 const canvas = document.getElementById("layer-1");
 const toolbar = document.getElementById("toolbar");
 const stroke = document.getElementById("stroke");
+const size = document.getElementById("linewidth");
 const ctx = canvas.getContext("2d");
 
 const canvasOffsetX = canvas.offsetLeft;
@@ -11,13 +12,23 @@ canvas.height = window.innerHeight - canvasOffsetY;
 
 let isPainting = false;
 let title = "untitled";
-let lineWidth = 5;
+let lineWidth = 50;
 let startX;
 let startY;
 
+const canvasBackground = () => {
+	ctx.fillStyle = "white";
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle = stroke.value;
+};
+
+window.addEventListener("load", () => {
+	canvasBackground();
+});
+
 toolbar.addEventListener("click", (e) => {
 	if (e.target.id === "clear") {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		canvasBackground();
 	}
 	if (e.target.id === "save") {
 		const link = document.createElement("a");
@@ -25,14 +36,11 @@ toolbar.addEventListener("click", (e) => {
 		link.href = canvas.toDataURL();
 		link.click();
 	}
-
 	if (e.target.id === "eraser") {
 		ctx.strokeStyle = "white";
-		console.log(e.target);
 	}
 	if (e.target.id === "pencil") {
 		ctx.strokeStyle = stroke.value;
-		console.log("pencil");
 	}
 });
 
@@ -40,8 +48,9 @@ toolbar.addEventListener("change", (e) => {
 	if (e.target.id === "stroke") {
 		ctx.strokeStyle = e.target.value;
 	}
-	if (e.target.id === "lineWidth") {
+	if (e.target.id === "linewidth" || e.target.id === "linewidthnumber") {
 		lineWidth = e.target.value;
+		console.log(lineWidth);
 	}
 	if (e.target.id === "title") {
 		title = e.target.value;
